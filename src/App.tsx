@@ -1,8 +1,3 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- * @flow
- */
 import * as React from 'react';
 import {
   Platform,
@@ -24,7 +19,7 @@ export default class App extends React.Component<Object, Object> {
     return (
       <View style={styles.container}>
         <Text style={styles.welcome}>
-          Welcome to React Native! xDDD
+          Welcome to React Native!
         </Text>
         <Text style={styles.instructions}>
           This is TypeScript Starter

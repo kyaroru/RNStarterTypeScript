@@ -23,7 +23,6 @@ function Hello({ name, enthusiasmLevel = 1 }: Props) {
 export default Hello;
 
 // styles
-
 const styles = StyleSheet.create({
     root: {
         alignItems: 'center',
@@ -47,7 +46,6 @@ const styles = StyleSheet.create({
 });
 
 // helpers
-
 function getExclamationMarks(numChars: number) {
   return Array(numChars + 1).join('!');
 }
