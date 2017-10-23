@@ -1,25 +1,21 @@
 import { createLogger } from 'redux-logger';
-import { createStore, applyMiddleware } from 'redux';
+import { createStore, applyMiddleware, Action, Store, StoreEnhancerStoreCreator } from 'redux';
 import { persistStore, autoRehydrate } from 'redux-persist';
 import { AsyncStorage } from 'react-native';
 import createSagaMiddleware from 'redux-saga';
-import reducers from 'reducers';
-import sagas from 'sagas';
+import reducers, { IRootState } from '../reducers';
+// import sagas from '../sagas';
 
-let createAppStore: StoreEnhancerStoreCreator<>;
-let store: Store<IRootState>;
+let createAppStore: StoreEnhancerStoreCreator<any>;
+let store: Store<any>;
 const sagaMiddleware = createSagaMiddleware();
-
-export interface IExcludeAction {
-  type: string;
-}
 
 /* global __DEV__ */
 if (__DEV__) {
   const excludedActions: string[] = [];
   const logger = createLogger({
     collapsed: true,
-    predicate: (getState: () => void, action: IExcludeAction) => excludedActions.indexOf(action.type) < 0,
+    predicate: (getState: () => void, action: Action) => excludedActions.indexOf(action.type) < 0,
   });
   createAppStore = applyMiddleware(sagaMiddleware, logger)(createStore);
 } else {
@@ -34,7 +30,7 @@ export const getStore = () => store;
 const configureStore = (onComplete: () => void) => {
   store = autoRehydrate()(createAppStore)(reducers);
   persistStore(store, { storage: AsyncStorage, whitelist: whitelistReducer }, onComplete);
-  sagaMiddleware.run(sagas);
+  // sagaMiddleware.run(sagas);
   return store;
 };
 

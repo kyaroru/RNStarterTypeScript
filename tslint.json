@@ -23,6 +23,7 @@
       "no-this-assignment": [true, {
         "allow-destructuring": true
       }],
+      "jsx-no-multiline-js": false,
       "no-implicit-dependencies": false,
       "no-unused-variable": [true, "react"],
       "object-literal-sort-keys": false,
