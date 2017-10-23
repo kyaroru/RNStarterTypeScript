@@ -3,23 +3,21 @@ import {
   Platform,
   StyleSheet,
   Text,
-  View
+  View,
 } from 'react-native';
 import Hello from './components/Hello';
 
 const instructions = Platform.select({
-  ios: 'Press Cmd+R to reload,\n' +
-    'Cmd+D or shake for dev menu',
-  android: 'Double tap R on your keyboard to reload,\n' +
-    'Shake or press menu button for dev menu',
+  ios: `Press Cmd+R to reload,\nCmd+D or shake for dev menu`,
+  android: `Double tap R on your keyboard to reload,\n Shake or press menu button for dev menu`,
 });
 
-export default class App extends React.Component<Object, Object> {
+export default class App extends React.Component<{}, {}> {
   render() {
     return (
       <View style={styles.container}>
         <Text style={styles.welcome}>
-          Welcome to React Native!
+          Welcome to React Native xDD
         </Text>
         <Text style={styles.instructions}>
           This is TypeScript Starter
@@ -28,7 +26,7 @@ export default class App extends React.Component<Object, Object> {
           {instructions}
         </Text>
         <View style={{ padding: 10 }}>
-          <Hello name='Carol' enthusiasmLevel={1} />
+          <Hello name="Carol" enthusiasmLevel={1} />
         </View>
       </View>
     );
