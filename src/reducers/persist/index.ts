@@ -1,12 +1,10 @@
 import { combineReducers } from 'redux';
-import token, { ITokenState } from './token';
+import token, { TokenState } from './token';
 
-interface IStoreEnhancerState { }
+export type PersistState = {
+  token: TokenState,
+};
 
-export interface IPersistState extends IStoreEnhancerState {
-  token: ITokenState,
-}
-
-export default combineReducers<IPersistState>({
+export default combineReducers<PersistState>({
   token,
 });

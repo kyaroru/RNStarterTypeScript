@@ -1,16 +1,14 @@
-import { IRootState } from '../../reducers';
+import { RootState } from '../../reducers';
 
 const PERSIST = 'PERSIST';
 
 export const SET_TOKEN = `${PERSIST}/SET_TOKEN`;
 
-export type TokenActions = {
-  SET_TOKEN: {
-    type: typeof SET_TOKEN,
-  },
-};
+type TokenAction = { type: 'PERSIST/SET_TOKEN', token: string };
 
-export const getToken = (state: IRootState) => state[PERSIST].token;
+export type TokenActions = TokenAction;
+
+export const getToken = (state: RootState): string | null => state[PERSIST].token;
 
 export const setToken = (token: string) => ({
   type: SET_TOKEN,

@@ -1,7 +1,16 @@
 import Actions from '../../actions';
-export type ITokenState = string;
+import { TokenActions } from '../../actions/persist/token';
 
-function token(state: string | null = null, action: Action) {
+export type TokenState = string | null;
+
+const getInitialState = (): TokenState => {
+  return null;
+};
+
+function token(state: TokenState, action: TokenActions): TokenState {
+  if (typeof state === 'undefined') {
+    return getInitialState();
+  }
   switch (action.type) {
     case Actions.SET_TOKEN:
       return action.token;

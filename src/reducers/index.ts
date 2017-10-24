@@ -1,15 +1,13 @@
 import { combineReducers } from 'redux';
-import auth, { IAuthState } from './auth';
-import persist, { IPersistState } from './persist';
+import auth, { AuthState } from './auth';
+import persist, { PersistState } from './persist';
 
-interface IStoreEnhancerState { }
+export type RootState = {
+  AUTH: AuthState,
+  PERSIST: PersistState,
+};
 
-export interface IRootState extends IStoreEnhancerState {
-  AUTH: IAuthState,
-  PERSIST: IPersistState,
-}
-
-export default combineReducers<IRootState>({
+export default combineReducers<RootState>({
   AUTH: auth,
   PERSIST: persist,
 });

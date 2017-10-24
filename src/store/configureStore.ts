@@ -3,11 +3,11 @@ import { createStore, applyMiddleware, Action, Store, StoreEnhancerStoreCreator 
 import { persistStore, autoRehydrate } from 'redux-persist';
 import { AsyncStorage } from 'react-native';
 import createSagaMiddleware from 'redux-saga';
-import reducers, { IRootState } from '../reducers';
+import reducers from '../reducers';
 // import sagas from '../sagas';
 
 let createAppStore: StoreEnhancerStoreCreator<any>;
-let store: Store<any>;
+let store: Store<object>;
 const sagaMiddleware = createSagaMiddleware();
 
 /* global __DEV__ */

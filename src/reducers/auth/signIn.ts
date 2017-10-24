@@ -1,11 +1,19 @@
 import Actions from '../../actions';
+import { SignInActions } from '../../actions/auth/signIn';
 
-export type ISignInState = {
+export type SignInState = {
   readonly isLoading: boolean,
   readonly errors: string[],
 };
 
-function signIn(state: ISignInState = { isLoading: false, errors: [] }, action: Action) {
+const getInitialState = (): SignInState => {
+  return { isLoading: false, errors: [] };
+};
+
+function signIn(state: SignInState, action: SignInActions): SignInState {
+  if (typeof state === 'undefined') {
+    return getInitialState();
+  }
   switch (action.type) {
     case Actions.SIGN_IN:
       return {

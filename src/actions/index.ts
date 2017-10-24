@@ -1,5 +1,5 @@
-import auth from './auth';
-import persist from './persist';
+import * as auth from './auth';
+import * as persist from './persist';
 
 export default {
   ...auth,

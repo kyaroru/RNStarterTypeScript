@@ -9,7 +9,7 @@ import {
 import { connect } from 'react-redux';
 import Hello from './components/Hello';
 import Actions from './actions';
-import { IRootState } from './reducers';
+import { RootState } from './reducers';
 import { SignInActions } from './actions/auth/signIn';
 
 const instructions = Platform.select({
@@ -72,7 +72,7 @@ const styles = StyleSheet.create({
   },
 });
 
-const mapStateToProps = (store: IRootState) => ({
+const mapStateToProps = (store: RootState) => ({
   token: Actions.getToken(store),
 });
 

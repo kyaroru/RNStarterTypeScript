@@ -1,5 +1,1 @@
-import * as token from './token';
-
-export default {
-  ...token,
-};
+export * from './token';

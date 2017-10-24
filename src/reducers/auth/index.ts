@@ -1,12 +1,10 @@
 import { combineReducers } from 'redux';
-import signIn, { ISignInState } from './signIn';
+import signIn, { SignInState } from './signIn';
 
-interface IStoreEnhancerState { }
+export type AuthState = {
+  signIn: SignInState,
+};
 
-export interface IAuthState extends IStoreEnhancerState {
-  signIn: ISignInState,
-}
-
-export default combineReducers<IAuthState>({
+export default combineReducers<AuthState>({
   signIn,
 });
