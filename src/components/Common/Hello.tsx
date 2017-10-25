@@ -14,7 +14,7 @@ const Hello = (props: IDataProps): JSX.Element => {
   return (
     <View style={styles.root}>
         <Text style={styles.greeting}>
-        Hello {name + getExclamationMarks(props.enthusiasmLevel)}
+        Hello {props.name + getExclamationMarks(props.enthusiasmLevel)}
         </Text>
     </View>
   );

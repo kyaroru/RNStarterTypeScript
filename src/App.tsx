@@ -7,9 +7,9 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import { connect } from 'react-redux';
-import Hello from './components/Hello';
-import { RootState } from './reducers';
-import { TokenActions } from './actions/persist/token';
+import Hello from './Components/Common/Hello';
+import { IRootState } from './Redux';
+import { TokenStateActions } from './Redux/Persist/Token/TokenActions';
 
 const instructions = Platform.select({
   ios: `Press Cmd+R to reload,\nCmd+D or shake for dev menu`,
@@ -74,11 +74,11 @@ interface IDispatchProps {
   setToken: (token: string) => void,
 }
 
-const mapStateToProps = (state: RootState) => ({
-  token: state.PERSIST.token,
+const mapStateToProps = (State: IRootState) => ({
+  token: State.PERSIST.TokenState.token,
 });
 
-const mapDispatchToProps = (dispatch: (action: TokenActions) => void): IDispatchProps => {
+const mapDispatchToProps = (dispatch: (action: TokenStateActions) => void): IDispatchProps => {
   return {
     setToken: token => dispatch({ type: 'PERSIST/SET_TOKEN', token }),
   };
