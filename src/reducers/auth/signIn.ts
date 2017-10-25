@@ -1,4 +1,3 @@
-import Actions from '../../actions';
 import { SignInActions } from '../../actions/auth/signIn';
 
 export type SignInState = {
@@ -6,26 +5,22 @@ export type SignInState = {
   readonly errors: string[],
 };
 
-const getInitialState = (): SignInState => {
-  return { isLoading: false, errors: [] };
-};
-
 function signIn(state: SignInState, action: SignInActions): SignInState {
   if (typeof state === 'undefined') {
     return getInitialState();
   }
   switch (action.type) {
-    case Actions.SIGN_IN:
+    case 'AUTH/SIGN_IN':
       return {
         isLoading: true,
         errors: [],
       };
-    case Actions.SIGN_IN_SUCCESS:
+    case 'AUTH/SIGN_IN_SUCCESS':
       return {
         isLoading: false,
         errors: [],
       };
-    case Actions.SIGN_IN_FAIL:
+    case 'AUTH/SIGN_IN_FAIL':
       return {
         isLoading: false,
         errors: action.errors,
@@ -34,5 +29,9 @@ function signIn(state: SignInState, action: SignInActions): SignInState {
       return state;
   }
 }
+
+const getInitialState = (): SignInState => {
+  return { isLoading: false, errors: [] };
+};
 
 export default signIn;

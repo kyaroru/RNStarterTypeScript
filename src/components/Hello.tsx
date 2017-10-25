@@ -1,26 +1,24 @@
 import * as React from 'react';
 import { Button, StyleSheet, Text, View } from 'react-native';
 
-export interface IProps {
+export interface IDataProps {
   name: string;
   enthusiasmLevel?: number;
 }
 
-function Hello({ name, enthusiasmLevel = 1 }: IProps) {
-  if (enthusiasmLevel <= 0) {
+const Hello = (props: IDataProps): JSX.Element => {
+  if (props.enthusiasmLevel && props.enthusiasmLevel <= 0) {
     throw new Error('You could be a little more enthusiastic. :D');
   }
 
   return (
     <View style={styles.root}>
         <Text style={styles.greeting}>
-        Hello {name + getExclamationMarks(enthusiasmLevel)}
+        Hello {name + getExclamationMarks(props.enthusiasmLevel)}
         </Text>
     </View>
   );
-}
-
-export default Hello;
+};
 
 // styles
 const styles = StyleSheet.create({
@@ -46,6 +44,11 @@ const styles = StyleSheet.create({
 });
 
 // helpers
-function getExclamationMarks(numChars: number) {
-  return Array(numChars + 1).join('!');
+function getExclamationMarks(numChars?: number) {
+  if (typeof numChars !== 'undefined') {
+    return Array(numChars + 1).join('!');
+  }
+  return null;
 }
+
+export default Hello;

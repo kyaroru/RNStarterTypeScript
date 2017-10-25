@@ -8,21 +8,15 @@ import {
 } from 'react-native';
 import { connect } from 'react-redux';
 import Hello from './components/Hello';
-import Actions from './actions';
 import { RootState } from './reducers';
-import { SignInActions } from './actions/auth/signIn';
+import { TokenActions } from './actions/persist/token';
 
 const instructions = Platform.select({
   ios: `Press Cmd+R to reload,\nCmd+D or shake for dev menu`,
   android: `Double tap R on your keyboard to reload,\n Shake or press menu button for dev menu`,
 });
 
-interface IProps {
-  setToken: (token: string) => any,
-  token: string,
-}
-
-class App extends React.Component<IProps, {}> {
+class App extends React.Component<IDataProps & IDispatchProps, any> {
   constructor() {
     super();
     this.onItemPress = this.onItemPress.bind(this);
@@ -72,12 +66,22 @@ const styles = StyleSheet.create({
   },
 });
 
-const mapStateToProps = (store: RootState) => ({
-  token: Actions.getToken(store),
+interface IDataProps {
+  token: string,
+}
+
+interface IDispatchProps {
+  setToken: (token: string) => void,
+}
+
+const mapStateToProps = (state: RootState) => ({
+  token: state.PERSIST.token,
 });
 
-const mapDispatchToProps = {
-  setToken: Actions.setToken,
+const mapDispatchToProps = (dispatch: (action: TokenActions) => void): IDispatchProps => {
+  return {
+    setToken: token => dispatch({ type: 'PERSIST/SET_TOKEN', token }),
+  };
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);
