@@ -3,8 +3,7 @@ import { createStore, applyMiddleware, Action, Store, StoreEnhancerStoreCreator 
 import { persistStore, autoRehydrate } from 'redux-persist';
 import { AsyncStorage } from 'react-native';
 import createSagaMiddleware from 'redux-saga';
-import { RootReducers } from '../Redux';
-// import sagas from '../sagas';
+import { RootReducers, RootSaga } from '../Redux';
 
 let createAppStore: StoreEnhancerStoreCreator<any>;
 let store: Store<object>;
@@ -30,7 +29,7 @@ export const getStore = () => store;
 const configureStore = (onComplete: () => void) => {
   store = autoRehydrate()(createAppStore)(RootReducers);
   persistStore(store, { storage: AsyncStorage, whitelist: whitelistReducer }, onComplete);
-  // sagaMiddleware.run(sagas);
+  sagaMiddleware.run(RootSaga);
   return store;
 };
 

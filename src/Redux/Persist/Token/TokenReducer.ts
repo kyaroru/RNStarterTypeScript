@@ -1,5 +1,5 @@
 import { TokenStateActions } from './TokenActions';
-import { ITokenState } from './TokenState';
+import { ITokenState } from './TokenTypes';
 
 export const TokenStateReducer = (state: ITokenState, action: TokenStateActions): ITokenState => {
   if (typeof state === 'undefined') {
@@ -13,7 +13,7 @@ export const TokenStateReducer = (state: ITokenState, action: TokenStateActions)
     default:
       return state;
   }
-}
+};
 
 const getInitialState = (): ITokenState => {
   return {

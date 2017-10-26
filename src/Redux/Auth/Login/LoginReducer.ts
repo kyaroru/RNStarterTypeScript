@@ -1,5 +1,5 @@
 import { LoginStateActions } from './LoginActions';
-import { ILoginState } from './LoginState';
+import { ILoginState } from './LoginTypes';
 
 export const LoginStateReducer = (state: ILoginState, action: LoginStateActions): ILoginState => {
   if (typeof state === 'undefined') {

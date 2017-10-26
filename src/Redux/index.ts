@@ -1,5 +1,6 @@
 import { combineReducers } from 'redux';
-import { IAuthState, AuthStateReducer } from './Auth';
+import { all, fork } from 'redux-saga/effects';
+import { IAuthState, AuthStateReducer, AuthSaga } from './Auth';
 import { IPersistState, PersistStateReducer } from './Persist';
 
 export interface IRootState {
@@ -11,3 +12,9 @@ export const RootReducers = combineReducers<IRootState>({
   AUTH: AuthStateReducer,
   PERSIST: PersistStateReducer,
 });
+
+export function* RootSaga() {
+  yield all([
+    fork(AuthSaga),
+  ]);
+}
